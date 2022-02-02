@@ -4,3 +4,6 @@ title: "Moritz Lumme"
 exclude:
   - README.md
   - LICENSE.md
+  - flake.nix
+  - flake.lock
+  - result
