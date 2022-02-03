@@ -19,19 +19,32 @@
           jekyll build
         '';
         installPhase = ''
+          mkdir -p $out/_site
           cp -r _site $out
         '';
         nativeBuildInputs = [
           pkgs.jekyll
         ];
       };
-
+      host_ws = pkgs.writeShellScriptBin "host_ws" ''
+        cd ${ws}
+        ${pkgs.jekyll}/bin/jekyll serve \
+          --safe \
+          --skip-initial-build \
+          --open-url
+      '';
     in
     rec {
       packages = flake-utils.lib.flattenTree {
         inherit ws;
       };
       defaultPackage = packages.ws;
+      apps = {
+        host_ws = flake-utils.lib.mkApp { 
+          drv = host_ws;
+        };
+      };
+      defaultApp = apps.host_ws;
     }
   );
 }
