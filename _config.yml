@@ -1,5 +1,5 @@
 url: "https://moritz.lumme.de"
-baseurl: "/"
+baseurl: ""
 title: "Moritz Lumme"
 exclude:
   - README.md
