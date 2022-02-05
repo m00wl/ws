@@ -1,6 +1,7 @@
 url: "https://moritz.lumme.de"
 baseurl: ""
 title: "Moritz Lumme"
+author: "Moritz Lumme"
 exclude:
   - README.md
   - LICENSE.md

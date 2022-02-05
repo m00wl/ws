@@ -1,0 +1,8 @@
+<nav>
+  <span>[</span>
+  {% for item in site.data.contact %}
+    <a href="{{ item.link }}">{{ item.name }}</a>
+    {% if item != site.data.contact.last %}<span> | </span>{% endif %}
+  {% endfor %}
+  <span>]</span>
+</nav>
