@@ -42,7 +42,7 @@ WIP
 
 ## License & Copyright
 
-Inspired by the classless `CSS` framework [`spcss`](https://github.com/susam/spcss)
+Inspired by the classless `CSS` framework [`spcss`](https://github.com/susam/spcss).
 
 This is free and open source software.
 You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of it, under the terms of the MIT License.

@@ -7,4 +7,8 @@ exclude:
   - LICENSE.md
   - flake.nix
   - flake.lock
+  - gemset.nix
   - result
+
+plugins:
+  - jekyll-sitemap

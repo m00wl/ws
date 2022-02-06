@@ -12,21 +12,28 @@
       pkgs = import nixpkgs {
         inherit system;
       };
+      ruby = pkgs.ruby;
+      ws-gems = pkgs.bundlerEnv {
+        name = "ws-gems";
+        inherit (pkgs.ruby);
+        gemdir = ./.;
+      };
       ws = pkgs.stdenv.mkDerivation {
         name = "ws";
         src = self;
         buildPhase = ''
-          jekyll build
+          bundle exec jekyll build
         '';
         installPhase = ''
           mkdir -p $out/_site
           cp -r _site $out
         '';
-        nativeBuildInputs = [
-          pkgs.jekyll
+        buildInputs = [
+          ws-gems
+          ruby
         ];
       };
-      host_ws = pkgs.writeShellScriptBin "host_ws" ''
+      ws-host = pkgs.writeShellScriptBin "ws-host" ''
         cd ${ws}
         ${pkgs.jekyll}/bin/jekyll serve \
           --safe \
@@ -40,11 +47,11 @@
       };
       defaultPackage = packages.ws;
       apps = {
-        host_ws = flake-utils.lib.mkApp { 
-          drv = host_ws;
+        ws-host = flake-utils.lib.mkApp { 
+          drv = ws-host;
         };
       };
-      defaultApp = apps.host_ws;
+      defaultApp = apps.ws-host;
     }
   );
 }
