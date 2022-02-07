@@ -36,17 +36,22 @@
         ${pkgs.ruby}/bin/ruby -run -e httpd -- .
       '';
     in
-    rec {
+    {
       packages = flake-utils.lib.flattenTree {
         inherit ws;
       };
-      defaultPackage = packages.ws;
+      defaultPackage = self.packages.${system}.ws;
       apps = {
         ws-host = flake-utils.lib.mkApp { 
           drv = ws-host;
         };
       };
-      defaultApp = apps.ws-host;
+      defaultApp = self.apps.${system}.ws-host;
+      devShell = pkgs.mkShell {
+        buildInputs = ws.buildInputs ++ [
+          pkgs.bundix
+        ];
+      };
     }
   );
 }
