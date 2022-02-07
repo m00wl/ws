@@ -12,7 +12,6 @@
       pkgs = import nixpkgs {
         inherit system;
       };
-      ruby = pkgs.ruby;
       ws-gems = pkgs.bundlerEnv {
         name = "ws-gems";
         inherit (pkgs.ruby);
@@ -25,20 +24,16 @@
           bundle exec jekyll build
         '';
         installPhase = ''
-          mkdir -p $out/_site
-          cp -r _site $out
+          cp -r _site/. $out
         '';
         buildInputs = [
           ws-gems
-          ruby
+          pkgs.ruby
         ];
       };
       ws-host = pkgs.writeShellScriptBin "ws-host" ''
         cd ${ws}
-        ${pkgs.jekyll}/bin/jekyll serve \
-          --safe \
-          --skip-initial-build \
-          --open-url
+        ${pkgs.ruby}/bin/ruby -run -e httpd -- .
       '';
     in
     rec {
