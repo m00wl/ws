@@ -25,14 +25,38 @@ This means that the repository contains both a `flake.nix` to build and host the
 
 ## Usage
 
-- nix:
+### nix:
+- build the `ws` derivation and make it available in the nix store:
 ```shell
 nix build
+```
+- locally serve the contents of the `ws` derivation from the nix store:
+```shell
 nix run
 ```
-- non-nix:
+- drop into a build environment:
+```shell
+nix develop
+```
+  here you can:
+  - execute bundle commands manually with `bundle [install|update|exec ...]`
+  - update gemfile.nix with `bundix`
+
+### non-nix:
+- install gems in the local directory with versions from Gemfile:
+```shell
+bundle install
+```
+- update gems in Gemfile to their latest version:
+```shell
+bundle update
+```
+- build website:
 ```shell
 bundle exec jekyll build
+```
+- serve website:
+```shell
 bundle exec jekyll serve
 ```
 
