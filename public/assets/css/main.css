@@ -1,0 +1,132 @@
+:root {
+  --base-fontsize: 1.15rem;
+  --base-line-height: 1.6;
+  /* light theme */
+  --bg: #fff;
+  --bg-accent: #f5f7ff;
+  --text: #333;
+  --text-light: #555;
+  --border: #999;
+  --accent: #03f;
+  --code: var(--text-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* dark theme */
+    --bg: #212121;
+    --bg-accent: #2b2b2b;
+    --text: #dcdcdc;
+    --text-light: #ababab;
+    --border: #666;
+    --accent: #6cf;
+    --code: var(--text-light);
+  }
+
+  img, video {
+    opacity: 0.8;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: helvetica, arial, sans-serif;
+  line-height: var(--base-line-height);
+  margin: 0 auto;
+  max-width: 40em;
+  padding: 0 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.25em 0 0.5em 0;
+}
+
+a:link, a:visited, a:focus, a:hover, a:active {
+  color: var(--accent);
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+}
+
+h1 a:empty:before, h2 a:empty:before, h3 a:empty:before,
+h4 a:empty:before, h5 a:empty:before, h6 a:empty:before {
+  content: "#";
+}
+
+h1 a:empty, h2 a:empty, h3 a:empty, h4 a:empty, h5 a:empty, h6 a:empty {
+  visibility: hidden;
+  padding-left: 0.25em;
+}
+
+h1:hover a:empty, h2:hover a:empty, h3:hover a:empty,
+h4:hover a:empty, h5:hover a:empty, h6:hover a:empty {
+  visibility: visible;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+figure {
+  margin: 1em 0;
+  text-align: center;
+}
+
+figcaption {
+  font-size: small;
+}
+
+pre, code, samp, kbd {
+  font-family: monospace, monospace;
+}
+
+code, samp, kbd {
+  color: var(--accent);
+}
+
+pre {
+  color: var(--code);
+  overflow: auto;
+  overflow-x: auto;
+}
+
+pre, blockquote {
+  background: var(--bg-accent);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+blockquote {
+  border-left: medium solid var(--accent);
+  margin: 1em 0;
+}
+
+blockquote :first-child {
+  margin-top: 0;
+}
+
+blockquote :last-child {
+  margin-bottom: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: thin solid var(--border);
+  padding: 0.3em 0.4em;
+  text-align: left;
+}
+
+footer p {
+  text-align: center;
+}
